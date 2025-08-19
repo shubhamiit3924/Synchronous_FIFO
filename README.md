@@ -8,8 +8,7 @@ A FIFO (First-In-First-Out) buffer stores data temporarily in the order it was r
 - Single-clock synchronous FIFO architecture  
 - Parameterized data width and depth  
 - Read and write enable logic  
-- Status flags: `full`, `empty`, `overflow`, `underflow`  
-- Simple testbench included for simulation
+- Status flags: `full`, `empty`
 
 
 
