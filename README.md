@@ -1,14 +1,37 @@
-# 📦 Synchronous FIFO – Verilog HDL Project
-This project implements a **Synchronous FIFO (First-In-First-Out)** buffer using **Verilog HDL**, designed and tested in **Xilinx Vivado**. It is ideal for applications where data needs to be transferred between modules synchronized to the same clock.
+# 🗂️ Synchronous Dual-Priority FIFO
 
-## 🧠 Overview
-A FIFO (First-In-First-Out) buffer stores data temporarily in the order it was received and outputs it in the same order. This **synchronous FIFO** uses a single clock for both write and read operations, commonly used in pipelines, UARTs, and streaming data interfaces.
+## 📌 Overview
+This project implements a **Synchronous Dual-Priority FIFO** in Verilog with support for **independent high-priority (HP) and low-priority (LP) channels**.  
+The FIFO ensures that **high-priority data is always served before low-priority data** during read operations.  
 
-## ⚙️ Features
-- Single-clock synchronous FIFO architecture  
-- Parameterized data width and depth  
-- Read and write enable logic  
-- Status flags: `full`, `empty`
+It includes **overflow and underflow protection**, preventing invalid writes when the FIFO is full and invalid reads when empty.  
+
+The design is **parameterized** for flexible **data width** and **FIFO depth**, making it reusable across different applications.  
+
+---
+
+## ✨ Features
+- ✅ **Dual-priority channels**: Separate high and low priority inputs  
+- ✅ **Priority handling**: HP always has precedence over LP during reads  
+- ✅ **Full/Empty protection**: Prevents data corruption on overflow/underflow  
+- ✅ **Parameterizable design**: Configurable `DATA_WIDTH` and `DEPTH`  
+- ✅ **Synchronous operation**: Single clock domain for reliable design  
+- ✅ **Testbench validated**: Comprehensive test cases for verification  
+
+---
+
+## 📐 Design Parameters
+```verilog
+parameter DATA_WIDTH = 8;   // Width of each FIFO entry
+parameter DEPTH      = 16;  // Number of entries in FIFO
+parameter ADDR_WIDTH = 4;   // log2(DEPTH)
+
+Verification
+A self-checking testbench is included to validate functionality:
+✅ Write/read operations for HP and LP channels
+✅ Priority check (HP > LP on read)
+✅ Full/empty protection validation
+✅ Corner cases (simultaneous read/write, reset conditions)
 
 
 
